@@ -13,5 +13,5 @@ yarn-error.log
 .env
 .phpunit.result.cache
 /admin_template/*
-/docker.*
+/docker/*
 docker-compose.yml
