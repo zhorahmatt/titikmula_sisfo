@@ -18,3 +18,12 @@ Route::get('/', function () {
 Route::get('/tes', function () {
     return 'tes coba gan';
 });
+
+Route::group(['prefix' => 'titikmula'], function() {
+    //admin page
+    Route::group(['prefix'  => 'admin'], function() {
+       //admin panel
+    });
+
+    //front page
+});
