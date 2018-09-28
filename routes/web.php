@@ -26,11 +26,12 @@ Route::group(['prefix' => 'tm'], function() {
         Route::get('/','HomeController@index');
 
         //manajemen user
-        Route::group(['prefix'  => 'user'], function() {
-            Route::get('/', 'UserController@index');
-        });
+        Route::resource('user', 'UserController');
 
-        //manajemen buku
+        //manajemen penulis
+        Route::resource('penulis', 'PenulisController');
+
+        //manajemen penerbit
     });
 
     //front page
