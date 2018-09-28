@@ -3,3 +3,17 @@ FITUR-FITUR :
     - MANAJEMEN USER DAN ROLE ACCESS
     - MANAJEMEN BUKU
     - MODUL PEMINJAMAN
+
+Sprint Pengerjaan :
+
+Minggu Pertama
+    - Setup Docker as Development Environment
+    - Layouting Sistem
+    - Alur data dan perancangan Database
+    - Modul User dan Registrasi
+
+Minggu Kedua
+
+Minggu Ketiga
+
+Minggu Keempat
