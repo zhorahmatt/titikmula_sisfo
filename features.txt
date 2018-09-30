@@ -1,0 +1,19 @@
+FITUR-FITUR :
+    - REGISTRASI DAN LOGIN
+    - MANAJEMEN USER DAN ROLE ACCESS
+    - MANAJEMEN BUKU
+    - MODUL PEMINJAMAN
+
+Sprint Pengerjaan :
+
+Minggu Pertama
+    - Setup Docker as Development Environment -> DONE
+    - Layouting Sistem 
+    - Alur data dan perancangan Database -> OTW
+    - Modul User dan Registrasi -> OTW
+
+Minggu Kedua
+
+Minggu Ketiga
+
+Minggu Keempat
