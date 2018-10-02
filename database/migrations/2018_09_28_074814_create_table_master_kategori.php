@@ -16,7 +16,7 @@ class CreateTableMasterKategori extends Migration
         Schema::create('master_kategori', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nama_kategori', 255)->unique();
-            $table->string('deskripsi_kategoru')->nullable();
+            $table->string('deskripsi_kategori')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

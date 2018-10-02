@@ -39,6 +39,12 @@ Route::group(['prefix' => 'tm'], function() {
         Route::group(['prefix' => 'penerbit'], function() {
             Route::get('/{penerbit}/delete', ['as' => 'penerbit.delete', 'uses' => 'PenerbitController@delete']);
         });
+
+        //manajemen kategori
+        Route::resource('kategori', 'KategoriController');
+        Route::group(['prefix' => 'kategori'], function() {
+            Route::get('/{kategori}/delete', ['as' => 'kategori.delete', 'uses' => 'KategoriController@delete']);
+        });
     });
 
     //front page
