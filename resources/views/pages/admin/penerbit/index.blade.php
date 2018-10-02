@@ -24,25 +24,25 @@
                                 </tr>
                             </thead>
 
-                            <a href="{{ route('penulis.create') }}" class="btn btn-success">Tambah</a>
+                            <a href="{{ route('penerbit.create') }}" class="btn btn-success">Tambah</a>
                             
                             <tbody>
-                                Terdapat : {{$penulis->count()}} penulis dalam pangkalan data ini.<br/>
-                                @if ($penulis->count() != 0)
-                                    @foreach ($penulis as $key => $thisPenulis)
+                                Terdapat : {{$penerbit->count()}} penerbit dalam pangkalan data ini.<br/>
+                                @if ($penerbit->count() != 0)
+                                    @foreach ($penerbit as $key => $thispenerbit)
                                         <tr>
                                             <th scope="row">{{$key+1}}</th>
-                                            <td>{{ $thisPenulis->nama_penulis }}</td>
-                                            <td>{{ $thisPenulis->alamat }}</td>
+                                            <td>{{ $thispenerbit->nama_penerbit }}</td>
+                                            <td>{{ $thispenerbit->alamat }}</td>
                                             <td>
-                                                <a href="{{ route('penulis.edit',['id' => $thisPenulis->id]) }}">Ubah</a> ||
-                                                <a href="{{ route('penulis.delete',['id' => $thisPenulis->id]) }}">Hapus</a>
+                                                <a href="{{ route('penerbit.edit',['id' => $thispenerbit->id]) }}">Ubah</a> ||
+                                                <a href="{{ route('penerbit.delete',['id' => $thispenerbit->id]) }}">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4">Data Penulis Tidak Ditemukan</td>
+                                        <td colspan="4">Data penerbit Tidak Ditemukan</td>
                                     </tr>
                                 @endif
                             </tbody>
