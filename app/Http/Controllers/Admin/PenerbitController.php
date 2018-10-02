@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Penulis;
+use App\Models\Penerbit;
 use Session;
 
-class PenulisController extends Controller
+class PenerbitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class PenulisController extends Controller
      */
     public function index()
     {
-        $penulis = Penulis::where('status', 1)->get();
-        return view('pages.admin.penulis.index')
-            ->withPenulis($penulis);
+        $penerbit = Penerbit::where('status', 1)->get();
+        return view('pages.admin.penerbit.index')
+            ->withPenerbit($penerbit);
     }
 
     /**
@@ -28,7 +28,7 @@ class PenulisController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.penulis.create');
+        return view('pages.admin.penerbit.create');
     }
 
     /**
@@ -41,26 +41,22 @@ class PenulisController extends Controller
     {
         //validate request
         $request->validate([
-            'nama_penulis'  => 'required|unique:master_penulis',
+            'nama_penerbit'  => 'required|unique:master_penerbit',
             'alamat'    => 'nullable',
-            'facebook_penulis'  => 'nullable',
-            'instagram_penulis' => 'nullable',
-            'twitter_penulis'   => 'nullable'
+            'telp'   => 'nullable'
         ]);
 
-        $penulis = new Penulis;
-        $penulis->nama_penulis = request('nama_penulis', 'Anonim');
-        $penulis->alamat = request('alamat', '-');
-        $penulis->instagram_penulis = request('instagram', '-');
-        $penulis->facebook_penulis = request('facebook', '-');
-        $penulis->twitter_penulis = request('twitter', '-');
-        $penulis->status = 1;
+        $penerbit = new Penerbit;
+        $penerbit->nama_penerbit = request('nama_penerbit', 'Anonim');
+        $penerbit->alamat = request('alamat', '-');
+        $penerbit->telp = request('telp', '0');
+        $penerbit->status = 1;
         
-        if ($penulis->save()) {
+        if ($penerbit->save()) {
             //pesan flash berhasi simpan
             Session::flash('success', 'Berhasil menyimpan data');
             //redirect ke index
-            return redirect()->route('penulis.index');
+            return redirect()->route('penerbit.index');
         }
         
         //pesan flash gagal simpan
@@ -88,9 +84,9 @@ class PenulisController extends Controller
      */
     public function edit($id)
     {
-        $thisPenulis = Penulis::findOrFail($id);
+        $thisPenerbit = Penerbit::findOrFail($id);
         
-        return view('pages.admin.penulis.edit')->withPenulis($thisPenulis);
+        return view('pages.admin.penerbit.edit')->withPenerbit($thisPenerbit);
     }
 
     /**
@@ -102,18 +98,16 @@ class PenulisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $penulis = Penulis::findOrFail($id);
-        $penulis->nama_penulis = request('nama_penulis', 'Anonim');
-        $penulis->alamat = request('alamat', '-');
-        $penulis->instagram_penulis = request('instagram', '-');
-        $penulis->facebook_penulis = request('facebook', '-');
-        $penulis->twitter_penulis = request('twitter', '-');
+        $penerbit = Penerbit::findOrFail($id);
+        $penerbit->nama_penerbit = request('nama_penerbit', 'Anonim');
+        $penerbit->alamat = request('alamat', '-');
+        $penerbit->telp = request('telp', '0');
         
-        if ($penulis->save()) {
+        if ($penerbit->save()) {
             //pesan flash berhasi simpan
             Session::flash('success', 'Berhasil memperbaharui data');
             //redirect ke index
-            return redirect()->route('penulis.index');
+            return redirect()->route('penerbit.index');
         }
         
         //pesan flash gagal simpan
@@ -131,13 +125,13 @@ class PenulisController extends Controller
      */
     public function delete($id)
     {
-        $penulis = Penulis::findOrFail($id);
-        $penulis->status = 0;
-        if ($penulis->save()) {
+        $penerbit = Penerbit::findOrFail($id);
+        $penerbit->status = 0;
+        if ($penerbit->save()) {
             Session::flash('success', 'Berhasil menghapus data');
-            return redirect()->route('penulis.index');
+            return redirect()->route('penerbit.index');
         }
         Session::flash('failed', 'Gagal menghapus data');
-        return redirect()->route('penulis.index');
+        return redirect()->route('penerbit.index');
     }
 }

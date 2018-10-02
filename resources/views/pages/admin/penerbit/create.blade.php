@@ -16,27 +16,19 @@
                     </div>
 
                     <div class="col-md-8">
-                        <form action="{{ route('penulis.store')}}" method="post">
+                        <form action="{{ route('penerbit.store')}}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="nama_penulis">Nama Penulis</label>
-                                <input type="text" class="form-control" id="nama_penulis" name="nama_penulis" aria-describedby="nama_penulis" placeholder="Nama Penulis">
+                                <label for="nama_penerbit">Nama Penerbit</label>
+                                <input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit" aria-describedby="nama_penerbit" placeholder="Nama Penerbit">
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
                                 <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
                             </div>
                             <div class="form-group">
-                                <label for="instagram">instagram</label>
-                                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="instagram">
-                            </div>
-                            <div class="form-group">
-                                <label for="facebook">facebook</label>
-                                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="facebook">
-                            </div>
-                            <div class="form-group">
-                                <label for="twitter">twitter</label>
-                                <input type="text" class="form-control" id="twitter" name="twitter" placeholder="twitter">
+                                <label for="telp">Telepon</label>
+                                <input type="text" class="form-control" id="telp" name="telp" placeholder="Telepon">
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>

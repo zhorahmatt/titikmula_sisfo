@@ -30,8 +30,15 @@ Route::group(['prefix' => 'tm'], function() {
 
         //manajemen penulis
         Route::resource('penulis', 'PenulisController');
+        Route::group(['prefix' => 'penulis'], function() {
+            Route::get('/{penuli}/delete', ['as' => 'penulis.delete', 'uses' => 'PenulisController@delete']);
+        });
 
         //manajemen penerbit
+        Route::resource('penerbit', 'PenerbitController');
+        Route::group(['prefix' => 'penerbit'], function() {
+            Route::get('/{penerbit}/delete', ['as' => 'penerbit.delete', 'uses' => 'PenerbitController@delete']);
+        });
     });
 
     //front page
