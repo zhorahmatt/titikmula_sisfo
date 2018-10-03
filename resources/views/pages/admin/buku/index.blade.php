@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Manajemen Member</div>
+                    <div class="card-header">Manajemen Buku</div>
                     <div class="">
                         <div class="row">
                             <div class="col-md-12">
@@ -31,31 +31,33 @@
                             <thead>
                                 <tr>
                                     <th scope="col" width="5%">#</th>
-                                    <th scope="col" width="30%">Kode</th>
-                                    <th scope="col" width="30%">Nama</th>
+                                    <th scope="col" width="30%">Judul Buku</th>
+                                    <th scope="col" >Penulis</th>
+                                    <th scope="col" >Penerbit</th>
                                     <th scope="col" width="15%">Action</th>
                                 </tr>
                             </thead>
 
-                            <a href="{{ route('member.create') }}" class="btn btn-success">Tambah</a>
+                            <a href="{{ route('buku.create') }}" class="btn btn-success">Tambah</a>
                             
                             <tbody>
-                                Terdapat : {{$member->count()}} member dalam pangkalan data ini.<br/>
-                                @if ($member->count() != 0)
-                                    @foreach ($member as $key => $thismember)
+                                Terdapat : {{$buku->count()}} buku dalam pangkalan data ini.<br/>
+                                @if ($buku->count() != 0)
+                                    @foreach ($buku as $key => $thisBuku)
                                         <tr>
                                             <th scope="row">{{$key+1}}</th>
-                                            <td>{{ $thismember->kode_member }}</td>
-                                            <td>{{ $thismember->nama }}</td>
+                                            <td>{{ $thisBuku->judul_buku }}</td>
+                                            <td>{{ $thisBuku->toPenulis->nama_penulis }}</td>
+                                            <td>{{ $thisBuku->toPenerbit->nama_penerbit }}</td>
                                             <td>
-                                                <a href="{{ route('member.edit',['id' => $thismember->id]) }}">Ubah</a> ||
-                                                <a href="{{ route('member.delete',['id' => $thismember->id]) }}">Hapus</a>
+                                                <a href="{{ route('buku.edit',['id' => $thisBuku->id]) }}">Ubah</a> ||
+                                                <a href="{{ route('buku.delete',['id' => $thisBuku->id]) }}">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4">Data member Tidak Ditemukan</td>
+                                        <td colspan="4">Data buku Tidak Ditemukan</td>
                                     </tr>
                                 @endif
                             </tbody>
