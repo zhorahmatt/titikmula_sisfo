@@ -31,31 +31,31 @@
                             <thead>
                                 <tr>
                                     <th scope="col" width="5%">#</th>
-                                    <th scope="col" width="30%">Penulis</th>
-                                    <th scope="col" >Deskripsi</th>
+                                    <th scope="col" width="30%">Kode</th>
+                                    <th scope="col" width="30%">Nama</th>
                                     <th scope="col" width="15%">Action</th>
                                 </tr>
                             </thead>
 
-                            <a href="{{ route('kategori.create') }}" class="btn btn-success">Tambah</a>
+                            <a href="{{ route('member.create') }}" class="btn btn-success">Tambah</a>
                             
                             <tbody>
-                                Terdapat : {{$kategori->count()}} kategori dalam pangkalan data ini.<br/>
-                                @if ($kategori->count() != 0)
-                                    @foreach ($kategori as $key => $thiskategori)
+                                Terdapat : {{$member->count()}} member dalam pangkalan data ini.<br/>
+                                @if ($member->count() != 0)
+                                    @foreach ($member as $key => $thismember)
                                         <tr>
                                             <th scope="row">{{$key+1}}</th>
-                                            <td>{{ $thiskategori->nama_kategori }}</td>
-                                            <td>{{ $thiskategori->deskripsi_kategori }}</td>
+                                            <td>{{ $thismember->kode_member }}</td>
+                                            <td>{{ $thismember->nama }}</td>
                                             <td>
-                                                <a href="{{ route('kategori.edit',['id' => $thiskategori->id]) }}">Ubah</a> ||
-                                                <a href="{{ route('kategori.delete',['id' => $thiskategori->id]) }}">Hapus</a>
+                                                <a href="{{ route('member.edit',['id' => $thismember->id]) }}">Ubah</a> ||
+                                                <a href="{{ route('member.delete',['id' => $thismember->id]) }}">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="4">Data kategori Tidak Ditemukan</td>
+                                        <td colspan="4">Data member Tidak Ditemukan</td>
                                     </tr>
                                 @endif
                             </tbody>

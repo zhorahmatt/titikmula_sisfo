@@ -45,6 +45,12 @@ Route::group(['prefix' => 'tm'], function() {
         Route::group(['prefix' => 'kategori'], function() {
             Route::get('/{kategori}/delete', ['as' => 'kategori.delete', 'uses' => 'KategoriController@delete']);
         });
+
+        //manajemen member
+        Route::resource('member', 'MemberController');
+        Route::group(['prefix' => 'member'], function() {
+            Route::get('/{member}/delete', ['as' => 'member.delete', 'uses' => 'MemberController@delete']);
+        });
     });
 
     //front page

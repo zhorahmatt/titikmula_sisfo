@@ -9,10 +9,15 @@ Sprint Pengerjaan :
 Minggu Pertama
     - Setup Docker as Development Environment -> DONE
     - Layouting Sistem 
-    - Alur data dan perancangan Database -> OTW
-    - Modul User dan Registrasi -> OTW
+    - Alur data dan perancangan Database -> DONE
+    - Modul Master Data :
+        - Penulis -> DONE
+        - Penerbit -> DONE
+        - Kategori -> DONE
 
 Minggu Kedua
+    - Modul User dan Registrasi -> OTW
+    - Modul Anggota/Member
 
 Minggu Ketiga
 

@@ -15,6 +15,11 @@
                         @endif
                     </div>
 
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            {{$errors->first()}}
+                        </div>
+                    @endif
                     <div class="col-md-8">
                         <form action="{{ route('penerbit.store')}}" method="post">
                             {{ csrf_field() }}
