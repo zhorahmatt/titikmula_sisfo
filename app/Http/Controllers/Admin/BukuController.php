@@ -48,63 +48,54 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         //validate request
         $request->validate([
-            'nama'  => 'required',
-            'alamat'    => 'nullable',
-            'telp'   => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'no_identitas'  => 'required',
-            'instagram' => 'nullable',
-            'twitter'   => 'nullable',
-            'facebook'  => 'nullable',
+            'judul_buku'  => 'required',
+            'kategori'    => 'required',
+            'penulis'   => 'required',
+            'penerbit' => 'required',
+            'deskripsi' => 'nullable',
+            'jml_halaman'   => 'nullable'
         ]);
 
-        $members = new Member;
-        $members->nama = request('nama', 'member-XYZ');
-        $members->alamat = request('alamat', '-');
-        $members->telp = request('telp','0');
-        $members->tempat_lahir = request('tempat_lahir', '-');
-        $members->tanggal_lahir = request('tanggal_lahir', '-');
-        $members->no_identitas = request('no_identitas', '0');
-        $members->instagram = request('instagram', '-');
-        $members->twitter = request('twitter', '-');
-        $members->facebook = request('facebook', '-');
-
-        //kode member, TMM-0001
-        $lastRegisteredMember = Member::orderBy('nomor_registrasi','desc')->first();
-        if(!$lastRegisteredMember){
-            $members->nomor_registrasi = 1;
-            $members->kode_member = 'TMM-0001';
+        $buku = new Buku;
+        $buku->judul_buku = request('judul_buku', 'buku-XYZ');
+        $buku->kategori = request('kategori','000');
+        $buku->penulis = request('penulis','000');
+        $buku->penerbit = request('penerbit','000');
+        $buku->deskripsi = request('deskripsi', '-');
+        $buku->jml_halaman = request('jml_halaman', '0');
+        
+        //kode buku , TMB-0001
+        $lastRegisteredBook = Buku::orderBy('nomor_registrasi_buku','desc')->first();
+        if(!$lastRegisteredBook){
+            $buku->nomor_registrasi_buku = 1;
+            $buku->kode_buku = 'TMB-0001';
         }else{
-            $getkodesum = (int)$lastRegisteredMember->nomor_registrasi + 1;
-            $kodeMember = '';
+            $getkodesum = (int)$lastRegisteredBook->nomor_registrasi_buku + 1;
+            $kodeBuku = '';
 
             if($getkodesum >= 1 && $getkodesum < 9){
-                $kodeMember = '000'.$getkodesum;
+                $kodeBuku = '000'.$getkodesum;
             }
             elseif ($getkodesum >= 10 && $getkodesum <= 99) {
-                $kodeMember = '00'.$getkodesum; 
+                $kodeBuku = '00'.$getkodesum; 
             } elseif ($getkodesum >= 100 && $getkodesum <= 999) {
-                $kodeMember = '0'.$getkodesum;
+                $kodeBuku = '0'.$getkodesum;
             } elseif($getkodesum >= 1000){
-                $kodeMember = (string)$getkodesum;
+                $kodeBuku = (string)$getkodesum;
             }
 
-            $members->nomor_registrasi = $getkodesum;
-            $members->kode_member = 'TMM-'.$kodeMember;
+            $buku->nomor_registrasi_buku = $getkodesum;
+            $buku->kode_buku = 'TMM-'.$kodeBuku;
         }
-
-        $members->status = 1;
-        $members->is_premium = 0;
+        $buku->status = 1;
         
-        if ($members->save()) {
+        if ($buku->save()) {
             //pesan flash berhasi simpan
             Session::flash('success', 'Berhasil menyimpan data');
             //redirect ke index
-            return redirect()->route('member.index');
+            return redirect()->route('buku.index');
         }
         
         //pesan flash gagal simpan
@@ -132,9 +123,15 @@ class BukuController extends Controller
      */
     public function edit($id)
     {
-        $thisKategori = Member::findOrFail($id);
-        
-        return view('pages.admin.buku.edit')->withMember($thisKategori);
+        $thisBuku = Buku::findOrFail($id);
+        $penulis = Penulis::where('status', 1)->select('id','nama_penulis')->get();
+        $penerbit = Penerbit::where('status',1)->select('id','nama_penerbit')->get();
+        $kategori = Kategori::where('status', 1)->select('id','nama_kategori')->get();
+        return view('pages.admin.buku.edit')
+            ->withBuku($thisBuku)
+            ->withPenulis($penulis)
+            ->withPenerbit($penerbit)
+            ->withKategori($kategori);
     }
 
     /**
@@ -146,22 +143,18 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $members = Member::findOrFail($id);
-        $members->nama = request('nama', 'member-XYZ');
-        $members->alamat = request('alamat', '-');
-        $members->telp = request('telp','0');
-        $members->tempat_lahir = request('tempat_lahir', '-');
-        $members->tanggal_lahir = request('tanggal_lahir', '-');
-        $members->no_identitas = request('no_identitas', '0');
-        $members->instagram = request('instagram', '-');
-        $members->twitter = request('twitter', '-');
-        $members->facebook = request('facebook', '-');
-        
-        if ($members->save()) {
+        $buku = Buku::findOrFail($id);
+        $buku->judul_buku = request('judul_buku', 'buku-XYZ');
+        $buku->kategori = request('kategori','000');
+        $buku->penulis = request('penulis','000');
+        $buku->penerbit = request('penerbit','000');
+        $buku->deskripsi = request('deskripsi', '-');
+        $buku->jml_halaman = request('jml_halaman', '0');
+        if ($buku->save()) {
             //pesan flash berhasi simpan
             Session::flash('success', 'Berhasil memperbaharui data');
             //redirect ke index
-            return redirect()->route('member.index');
+            return redirect()->route('buku.index');
         }
         
         //pesan flash gagal simpan
@@ -178,13 +171,13 @@ class BukuController extends Controller
      */
     public function delete($id)
     {
-        $members = Member::findOrFail($id);
-        $members->status = 0;
-        if ($members->save()) {
+        $buku = Buku::findOrFail($id);
+        $buku->status = 0;
+        if ($buku->save()) {
             Session::flash('success', 'Berhasil menghapus data');
-            return redirect()->route('member.index');
+            return redirect()->route('buku.index');
         }
         Session::flash('failed', 'Gagal menghapus data');
-        return redirect()->route('member.index');
+        return redirect()->route('buku.index');
     }
 }

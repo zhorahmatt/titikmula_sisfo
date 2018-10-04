@@ -11,18 +11,18 @@ class Buku extends Model
     //relasi ke penulis
     public function toPenulis()
     {
-        return $this->hasOne('App\Models\Penulis', 'master_penulis', 'id', 'id');
+        return $this->hasOne('App\Models\Penulis', 'id', 'penulis');
     }
 
     //relasi ke penerbit
     public function toPenerbit()
     {
-        return $this->hasOne('App\Models\Penerbit', 'master_penerbit', 'id', 'id');
+        return $this->hasOne('App\Models\Penerbit', 'id', 'penerbit');
     }
 
     //relasi ke kategori
     public function toKategori()
     {
-        return $this->hasMany('App\Models\Kategori', 'master_penulis', 'id', 'id');
+        return $this->hasMany('App\Models\Kategori', 'id', 'kategori');
     }
 }

@@ -15,6 +15,8 @@ class CreateTableMasterBuku extends Migration
     {
         Schema::create('master_buku', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('kode_buku')->unique();
+            $table->string('nomor_registrasi_buku')->unique();
             $table->string('judul_buku')->unique();
             $table->integer('penulis')->unsigned()->nullable();
             $table->integer('penerbit')->unsigned()->nullable();

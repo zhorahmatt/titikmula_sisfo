@@ -58,6 +58,10 @@
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" class="form-control"></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="jml_halaman">Jumlah Halaman</label>
+                                <input type="text" name="jml_halaman" id="jml_halaman" class="form-control">
+                            </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>

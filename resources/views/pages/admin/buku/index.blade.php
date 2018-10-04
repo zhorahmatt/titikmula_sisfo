@@ -31,6 +31,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" width="5%">#</th>
+                                    <th scope="col" width="10%">Kategori</th>
                                     <th scope="col" width="30%">Judul Buku</th>
                                     <th scope="col" >Penulis</th>
                                     <th scope="col" >Penerbit</th>
@@ -46,6 +47,11 @@
                                     @foreach ($buku as $key => $thisBuku)
                                         <tr>
                                             <th scope="row">{{$key+1}}</th>
+                                            <td>
+                                                @foreach ($thisBuku->toKategori as $kategori)
+                                                    {{ $kategori->nama_kategori }}
+                                                @endforeach
+                                            </td>
                                             <td>{{ $thisBuku->judul_buku }}</td>
                                             <td>{{ $thisBuku->toPenulis->nama_penulis }}</td>
                                             <td>{{ $thisBuku->toPenerbit->nama_penerbit }}</td>

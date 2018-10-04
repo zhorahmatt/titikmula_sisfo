@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tes', function () {
-    return 'tes coba gan';
-});
 
 Route::group(['prefix' => 'tm'], function() {
     //admin page
@@ -27,6 +24,20 @@ Route::group(['prefix' => 'tm'], function() {
 
         //manajemen user
         Route::resource('user', 'UserController');
+        Route::group(['prefix' => 'user'], function() {
+            Route::get('/{user}/delete', ['as' => 'user.delete', 'uses' => 'UserController@delete']);
+        });
+
+        //manajemen RBAC
+        Route::resource('role', 'RoleController');
+        Route::group(['prefix' => 'role'], function() {
+            Route::get('/{role}/delete', ['as' => 'role.delete', 'uses' => 'RoleController@delete']);
+        });
+
+        Route::resource('access', 'AccessController');
+        Route::group(['prefix' => 'access'], function() {
+            Route::get('/{access}/delete', ['as' => 'access.delete', 'uses' => 'AccessController@delete']);
+        });
 
         //manajemen penulis
         Route::resource('penulis', 'PenulisController');
