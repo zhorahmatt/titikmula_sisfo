@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
         $admin->name = 'admin';
         $admin->email = 'admin@titikmula.com';
         $admin->password = bcrypt('admin12345');
+        $admin->status = true;
         $admin->save();
         $admin->roles()->attach($roleAdmin);
 
@@ -29,6 +30,7 @@ class UserTableSeeder extends Seeder
         $pustakawan->name = 'pustakawan';
         $pustakawan->email = 'pustakawan@titikmula.com';
         $pustakawan->password = bcrypt('pustakawan12345');
+        $pustakawan->status = true;
         $pustakawan->save();
         $pustakawan->roles()->attach($rolePustakawan);
     }

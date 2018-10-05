@@ -30,7 +30,7 @@ class CreateTableRoleAccess extends Migration
         });
 
         //create table relation on role dan access
-        Schema::create('role_access', function(Blueprint $table) {
+        Schema::create('access_role', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned();
             $table->integer('access_id')->unsigned();

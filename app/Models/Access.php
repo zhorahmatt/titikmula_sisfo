@@ -7,7 +7,7 @@ use App\Models\Role;
 
 class Access extends Model
 {
-    protected $table = 'acceess';
+    protected $table = 'access';
 
     public $timestamps = false;
 

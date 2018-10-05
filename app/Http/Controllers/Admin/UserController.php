@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::where('status', 1)->get();
         return view('pages.admin.user.index')
             ->withUser($user);
     }
@@ -117,6 +117,10 @@ class UserController extends Controller
         $role = Role::where('nama_roles', request('roles'))->first();
         if ($role) {
             if ($user->save()) {
+                //hapus relasi dari role user
+                $user->roles()->detach();
+
+                //attach new roles based on option selected
                 $user->roles()->attach($role);
 
                 // pesan berhasil
@@ -135,13 +139,24 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->status = 0;
+        if ($user->save()) {
+            //masih di kondisikan apakah tetap di hapus role nya jika user di hapus
+            //$user->roles()->detach();
+
+            Session::flash('success', 'Berhasil menghapus data');
+            return redirect()->route('user.index');
+        }
+        Session::flash('failed', 'Gagal menghapus data');
+        return redirect()->route('user.index');
     }
 }
