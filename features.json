@@ -1,0 +1,8 @@
+{
+    "name"  : "Sistem Informasi Titik Mula",
+    "maintainer" : "@zhorahmat",
+    "features"  : [
+        "Peminjaman Buku",
+        "Manajemen Member"
+    ]
+}

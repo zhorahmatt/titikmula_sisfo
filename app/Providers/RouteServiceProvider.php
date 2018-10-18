@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapPeminjamanRoutes();
     }
 
     /**
@@ -69,5 +69,13 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapPeminjamanRoutes()
+    {
+        Route::prefix('peminjaman')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/front/peminjaman.php'));
     }
 }
