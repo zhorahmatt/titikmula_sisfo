@@ -64,3 +64,7 @@ Route::group(['prefix' => 'tm'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/adminlte', function() {
+   return view('admin_template');
+});

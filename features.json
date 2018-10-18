@@ -3,6 +3,7 @@
     "maintainer" : "@zhorahmat",
     "features"  : [
         "Peminjaman Buku",
-        "Manajemen Member"
+        "Manajemen Member",
+        "Manajemen User",
     ]
 }

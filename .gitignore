@@ -16,3 +16,4 @@ yarn-error.log
 /docker/*
 docker-compose.yml
 /laradock/*
+/public/admin_template/*
